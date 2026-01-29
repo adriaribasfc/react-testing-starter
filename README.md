@@ -1,21 +1,17 @@
 # Testing React Apps
 
-This is the starter project for my Reacting testing course where you'll learn everything you need to know to effectively test React apps. You can find the full course at: 
+## About this Project
 
-https://codewithmosh.com 
+This is a React app built with the following technologies and libraries:
 
-## About this Project 
-
-This is a React app built with the following technologies and libraries: 
-
-- Auth0 
-- Tailwind 
+- Auth0
+- Tailwind
 - RadixUI
-- React Router 
-- React Query  
-- Redux Toolkit 
+- React Router
+- React Query
+- Redux Toolkit
 
-Please follow these instructions carefully to setup this project on your machine. 
+Please follow these instructions carefully to setup this project on your machine.
 
 ## Setting up Auth0 for Authentication
 
@@ -24,7 +20,6 @@ Please follow these instructions carefully to setup this project on your machine
    If you don't already have an Auth0 account, you can sign up for one at [https://auth0.com/](https://auth0.com/). Auth0 offers a free tier that you can use for your project.
 
 2. **Create a New Application:**
-
    - Log in to your Auth0 account.
    - Go to the Auth0 Dashboard.
    - Click on "Applications" in the left sidebar.
@@ -33,23 +28,19 @@ Please follow these instructions carefully to setup this project on your machine
    - Select "Single Page Web Applications" as the application type.
 
 3. **Configure Application Settings:**
-
    - On the application settings page, configure the following settings:
-     - Allowed Callback URLs: `http://localhost:5173` 
-     - Allowed Logout URLs: `http://localhost:5173` 
+     - Allowed Callback URLs: `http://localhost:5173`
+     - Allowed Logout URLs: `http://localhost:5173`
      - Allowed Web Origins: `http://localhost:5173`
    - Save the changes.
 
 4. **Obtain Auth0 Domain and ClientID:**
-
    - On the application settings page, you will find your Auth0 Domain and Client ID near the top of the page.
    - Copy the Auth0 Domain (e.g., `your-auth0-domain.auth0.com`) and Client ID (e.g., `your-client-id`).
 
 5. **Create a `.env.local` File:**
-
    - In the root directory of the project, you'll find a sample `.env` file. Make a copy and save it as `.env.local`.
    - Replace the Auth0 Domain and Client ID with the actual values you obtained from Auth0.
-
 
 ## Running the App
 
@@ -57,13 +48,45 @@ Now that you have set up Auth0 and configured your environment variables, you ca
 
 ```bash
 # Install dependencies
-npm install
+pnpm install
 
 # Start the development server
-npm start
+pnpm start
 ```
 
-This will start the back-end process at `http://localhost:3000`. If port 3000 is in use on your machine, update the port number in the following files and run `npm start` again: 
+This will start the back-end process at `http://localhost:3000`. If port 3000 is in use on your machine, update the port number in the following files and run `pnpm start` again:
 
 - json-server.json
 - src/main.tsx
+
+## Course notes
+
+### Which things of a component have to be tested?
+
+- How they render
+- How they respond to user actions
+- No tests is better than bad tests
+
+> We have to test what they do, not how they are implemented. It doesn't matter if they use hooks, contexts, reducers, etc, those things are implementation details.
+
+### Unit Tests vs Integration Tests
+
+- We have to test hooks or reducers in isolation just if they are used by several components or they have complex logic.
+- Since components are composed by different units (hooks, utilities, etc), component tests are `Integration Tests`.
+  - (-) Slower
+  - (+) More confidence
+  - (+) More robust
+
+### Visual Tests
+
+> [!IMPORTANT]
+> **Don't test styles!** - Test the behaviour.
+
+- **Can be fragile:** a tiny change of colors, typography, etc can break a test.
+- **Don't deliver value:** passing visual tests don't guarantee that our application looks good.
+
+## IDE Extensions
+
+- Vitest `vitest.explorer`
+- Vitest Snippets `deinsoftware.vitest-snippets`
+- Testing Library Snippets `deinsoftware.testing-library-snippets`
